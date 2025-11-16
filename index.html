@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio Stephany Rodrigues - Social Media e Front-End</title>
+
+<meta name="description" content="Portfólio de Stephany Rodrigues, Social Media, Criadora de Conteúdo e Desenvolvedora Front-End.">
+<meta name="keywords" content="Social Media, Front-End, HTML, CSS, JavaScript, Portfólio, UCB">
+<meta name="author" content="Stephany Rodrigues">
+
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style> 
+  
+* { margin:0; padding:0; box-sizing:border-box; }
+:root {
+  --bg-primary: #F5F7FA;
+  --bg-secondary: #E0E7F1;
+  --bg-card: #fff;
+  --color-text: #2B2B2B;
+  --color-heading: #9b59b6;
+  --color-accent: #ff6bcb;
+  --shadow-card: 0 10px 25px rgba(0,0,0,0.08);
+  --shadow-header: 0 5px 20px rgba(0,0,0,0.2);
+}
+
+body.dark-mode {
+  --bg-primary: #121212;
+  --bg-secondary: #1E1E1E;
+  --bg-card: #282828;
+  --color-text: #E0E0E0;
+  --color-heading: #ff6bcb; 
+  --color-accent: #9b59b6; 
+  --shadow-card: 0 10px 25px rgba(255,255,255,0.05);
+  --shadow-header: 0 5px 20px rgba(255,255,255,0.1);
+  background: var(--bg-secondary);
+}
+
+html { scroll-behavior:smooth; }
+body { 
+  font-family:'Open Sans',sans-serif; 
+  background:linear-gradient(to bottom, var(--bg-primary), var(--bg-secondary)); 
+  color:var(--color-text); 
+  line-height:1.6; 
+  transition: background-color 0.5s, color 0.5s;
+}
+
+a { text-decoration:none; font-weight:600; transition:0.3s; color: var(--color-heading); }
+
+
+header {
+  background: linear-gradient(90deg,var(--color-heading),var(--color-accent));
+  padding:15px 0;
+  text-align:center;
+  color:#fff;
+  position:sticky;
+  top:0;
+  z-index:1000;
+  box-shadow:var(--shadow-header);
+}
+header h1 { font-family:'Poppins',sans-serif; font-size:2rem; margin-bottom:5px; }
+header p { font-size:1rem; }
+nav { margin-top:10px; }
+nav a { margin:0 12px; color:#fff; font-weight:600; padding:5px 8px; border-radius:8px; transition:0.3s; }
+nav a:hover { background: linear-gradient(90deg,var(--color-accent),var(--color-heading)); }
+
+
+#theme-toggle {
+  position:absolute; top:20px; right:20px;
+  background:none; border:none; color:#fff;
+  font-size:1.5rem; cursor:pointer;
+  transition: transform 0.3s;
+}
+#theme-toggle:hover { transform: scale(1.1); }
+
+
+.container { width:90%; max-width:1200px; margin:0 auto; padding:50px 0; }
+
+
+section { 
+  background:var(--bg-card); 
+  padding:50px; 
+  margin-bottom:70px; 
+  border-radius:15px; 
+  box-shadow:var(--shadow-card); 
+  opacity:0; 
+  transform:translateY(30px); 
+  transition: all 0.9s ease; 
+}
+section.show { opacity:1; transform:translateY(0); }
+
+h2 { font-family:'Poppins',sans-serif; color:var(--color-heading); font-size:2rem; margin-bottom:25px; position:relative; }
+h2::after { content:''; display:block; width:60px; height:4px; background:var(--color-accent); margin-top:8px; border-radius:2px; }
+
+h3 { font-family:'Poppins',sans-serif; color:var(--color-heading); font-size:1.5rem; margin-bottom:15px; }
+p { margin-bottom:18px; color: var(--color-text); }
+ul { list-style-type:disc; padding-left:25px; margin-bottom:25px; }
+.ferramentas p { margin-bottom:8px; }
+
+
+#home { 
+  background: linear-gradient(135deg, var(--color-heading), var(--color-accent)); 
+  color: #fff; 
+  text-align: center; 
+  padding: 100px 50px;
+  box-shadow: none; 
+}
+#home h2 { font-size: 3rem; color: #fff; margin-bottom: 10px; }
+#home h2::after { display: none; }
+#home p { font-size: 1.2rem; }
+
+
+.sobre-wrapper { display:flex; align-items:center; gap:40px; flex-wrap:wrap; }
+.sobre-wrapper img { width:220px; border-radius:15px; object-fit:cover; box-shadow:0 8px 25px rgba(0,0,0,0.15); }
+.sobre-texto { flex:1; }
+
+
+.midia { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:25px; margin-top:25px; }
+
+
+.video-card {
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.12);
+  cursor:pointer;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  width:100%;
+  aspect-ratio:9/16;
+  background:#000;
+}
+.video-card video {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:20px;
+}
+.video-card:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.25); }
+
+.overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background: rgba(0,0,0,0.0);
+  border-radius:20px;
+  transition: background 0.3s ease;
+  pointer-events: none;
+}
+
+.video-card:hover .overlay { background: rgba(0,0,0,0.25); }
+
+.reel-info {
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  padding:10px 15px;
+  text-align:left;
+  background:rgba(0,0,0,0.4);
+  border-radius:0 0 20px 20px;
+  opacity:0;
+  transform: translateY(30px);
+  transition: all 0.4s ease;
+  color:#fff;
+  font-weight:600;
+}
+.video-card:hover .reel-info { opacity:1; transform: translateY(0); }
+
+.play-icon {
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%) scale(0);
+  font-size:40px;
+  color:#fff;
+  opacity:0.9;
+  pointer-events:none;
+  transition: transform 0.4s ease;
+}
+.video-card:hover .play-icon { transform:translate(-50%, -50%) scale(1.2); }
+
+
+.midia img {
+    width:100%;
+    height:auto;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    object-fit:contain;
+}
+.midia img:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+
+
+.trabalho { margin-bottom:80px; }
+
+
+.btn { display:inline-block; padding:12px 28px; background:linear-gradient(90deg,var(--color-heading),var(--color-accent)); color:#fff; border-radius:50px; font-weight:600; margin:5px 0; transition:0.3s; }
+.btn:hover { transform:translateY(-2px); box-shadow:0 6px 20px rgba(0,0,0,0.2); }
+
+.contato-btns { display:flex; gap:20px; flex-wrap:wrap; }
+
+
+.skills-grid { 
+  display: flex; 
+  gap: 20px; 
+  flex-wrap: wrap; 
+  justify-content: space-around;
+}
+.skill-item {
+  flex: 1;
+  min-width: 250px;
+  background: var(--bg-secondary);
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s;
+}
+.skill-item:hover { transform: translateY(-5px); }
+.skill-item i { font-size: 2.5rem; color: var(--color-heading); margin-bottom: 10px; }
+
+
+footer { text-align:center; padding:40px 0; background:var(--bg-card); border-radius:12px 12px 0 0; box-shadow:0 -8px 25px rgba(0,0,0,0.08); margin-top:40px; }
+
+.whatsapp-btn { position:fixed; bottom:25px; right:25px; background:linear-gradient(90deg,#25D366,#1ebe57); color:#fff; padding:16px 18px; border-radius:50px; font-weight:600; text-decoration:none; box-shadow:0 6px 25px rgba(0,0,0,0.25); font-size:24px; display:flex; justify-content:center; align-items:center; z-index:1000; transition:0.3s; }
+.whatsapp-btn:hover { transform:translateY(-3px); }
+
+@media(max-width:768px){
+  header h1 { font-size:1.8rem; }
+  h2 { font-size:1.7rem; }
+  h3 { font-size:1.3rem; }
+  .sobre-wrapper { flex-direction:column; align-items:center; text-align:center; gap:25px; }
+  .sobre-wrapper img { width:180px; }
+  .contato-btns { flex-direction:column; }
+  .midia { grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:20px; }
+  #theme-toggle { top: 15px; right: 15px; }
+  #home { padding: 80px 20px; }
+  #home h2 { font-size: 2.2rem; }
+}
+
+</style>
+
+</head>
+<body>
+
+<header>
+  <h1>Stephany Rodrigues</h1>
+  <p>Social Media | Criadora de Conteúdo | Marketing Digital | Front-End Developer</p>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#trabalhos">Trabalhos</a>
+    <a href="#habilidades">Habilidades</a>
+    <a href="#frontend">Front-End</a>
+    <a href="#contato">Contato</a>
+  </nav>
+  <button id="theme-toggle" aria-label="Alternar tema entre escuro e claro"><i class="fas fa-moon"></i></button>
+</header>
+
+<div class="container">
+
+<section id="home" class="fade-in">
+  <h2>Estratégia, Conteúdo e Código.</h2>
+  <p>Construindo marcas digitais com propósito e dados.</p>
+  <a href="#trabalhos" class="btn">Ver Portfólio</a>
+</section>
+
+<section id="sobre" class="fade-in">
+  <h2>Sobre mim</h2>
+  <div class="sobre-wrapper">
+    <img src="stephany.jpeg" alt="Foto de Stephany Rodrigues">
+
+    <div class="sobre-texto">
+      <p>Sou Social Media com experiência na criação de estratégias e conteúdos digitais para instituições de ensino e cultura. Ao longo da minha trajetória, desenvolvi campanhas, vídeos e postagens que aproximam pessoas e fortalecem marcas de forma autêntica e criativa.</p>
+      <p>Sou formada em <strong>Análise e Desenvolvimento de Sistemas</strong> e atualmente me preparo para iniciar uma <strong>pós-graduação em Data Analytics</strong>, unindo minhas duas paixões: marketing e tecnologia.</p>
+      <p>Este site foi desenvolvido por mim, utilizando HTML, CSS e design responsivo, mostrando também meus conhecimentos em front-end. Acredito que a comunicação é ainda mais poderosa quando guiada por dados e propósito e é exatamente isso que busco transmitir em cada projeto que realizo. ✨</p>
+      <p>Espero que aproveite o passeio pelo meu portfólio! 👋</p>
+    </div>
+  </div>
+</section>
+
+<section id="trabalhos" class="fade-in">
+  <h2>Experiências</h2>
+
+  <div class="trabalho">
+    <h3>Colégio Sagrada Família Menino Deus</h3>
+    <p>🎓 No Colégio Sagrada Família Menino Deus, tive meu primeiro contato com o marketing digital na prática. Fui responsável por registrar e editar vídeos mostrando a rotina das crianças, criar cards interativos e desenvolver conteúdos para as redes sociais da instituição. Também participei da produção da campanha de matrícula, contribuindo com ideias e materiais visuais para atrair novos alunos. Essa experiência foi essencial para despertar minha paixão pela área e fortalecer minhas habilidades criativas e estratégicas.</p>
+    <div class="midia">
+      <div class="video-card">
+        <video src="sagrada1.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 120 | 💬 15</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="sagrada2.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 95 | 💬 8</p>
+        </div>
+      </div>
+      <img src="sagrada-card1.jpeg" alt="Card interativo do Colégio Sagrada Família">
+    </div>
+  </div>
+
+  <div class="trabalho">
+    <h3>Os Pedagógicos</h3>
+    <p>🎥 Nos Pedagógicos, aprofundei meus conhecimentos em marketing digital e desenvolvi habilidades em todas as etapas da criação de conteúdo. Atuo na produção de posts, cards e vídeos desde a captação até a edição final além de participar de reuniões estratégicas e no planejamento de campanhas. Utilizo diariamente ferramentas como Trello, MLibs, Meta Business Suite, CapCut e Canva, que me ajudam a otimizar o fluxo de trabalho e manter a identidade visual da marca. Também tenho contato com Photoshop, Illustrator e Affinity, nos quais estou aprimorando minhas habilidades gradualmente para elevar ainda mais a qualidade dos meus projetos. Essa experiência tem sido essencial para fortalecer minha criatividade, organização e visão estratégica dentro da área de social media.</p>
+    <div class="midia">
+      <div class="video-card">
+        <video src="pedagogicos1.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 200 | 💬 30</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="pedagogicos2.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 150 | 💬 20</p>
+        </div>
+      </div>
+      <img src="pedagogicos-card1.jpeg" alt="Card da campanha dos Pedagógicos">
+    </div>
+  </div>
+
+  <div class="trabalho">
+    <h3>Biblioteca Pública de Taguatinga</h3>
+    <p>📚 Na Biblioteca Pública de Taguatinga, atuo sendo responsável por toda a administração do perfil da instituição. Cuido do planejamento, criação e execução das estratégias de conteúdo, realizando gravações, edições de vídeos e desenvolvimento de cards e postagens para as redes sociais. Desde que comecei a administrar o Instagram da biblioteca, o perfil passou a gerar um impacto muito positivo: o espaço recebeu um aumento significativo nas doações de livros e mais pessoas passaram a frequentar e conhecer o local. Mesmo não sendo uma página de alto engajamento por se tratar de uma instituição pública o retorno tem sido extremamente gratificante, com a comunidade se aproximando mais da biblioteca, dos eventos e do universo da leitura. Essa experiência tem fortalecido minhas habilidades em storytelling, gestão de conteúdo e comunicação institucional com propósito.</p>
+    <div class="midia">
+      <div class="video-card">
+        <video src="biblioteca1.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 180 | 💬 25</p>
+        </div>
+      </div>
+      <div class="video-card">
+        <video src="biblioteca2.mp4" controls></video>
+        <div class="overlay"></div>
+        <div class="play-icon">▶</div>
+        <div class="reel-info">
+          <p>❤️ 140 | 💬 12</p>
+        
+        </div>
+      </div>
+      <img src="biblioteca-card1.jpeg" alt="Card da Biblioteca Pública de Taguatinga">
+    </div>
+  </div>
+
+</section>
+
+<section id="habilidades" class="fade-in">
+  <h2>Habilidades & Ferramentas</h2>
+  <ul>
+    <li>Criação de conteúdo e estratégias digitais</li>
+    <li>Gravação e edição de vídeos</li>
+    <li>Design de cards e identidade visual</li>
+    <li>Gestão de redes sociais</li>
+    <li>Planejamento e organização de campanhas</li>
+  </ul>
+  <div class="ferramentas">
+    <p><strong>Ferramentas que utilizo:</strong></p>
+    <p>Trello • MLabs • Meta Business Suite • Canva • Photoshop • Illustrator • Affinity • CapCut</p>
+  </div>
+</section>
+
+<section id="frontend" class="fade-in">
+  <h2>Front-End & Dev</h2>
+  <p>Este site é um produto front-end completo, demonstrando as seguintes habilidades:</p>
+  <div class="skills-grid">
+    <div class="skill-item">
+      <i class="fab fa-html5"></i>
+      <h3>HTML Semântico</h3>
+    </div>
+    <div class="skill-item">
+      <i class="fas fa-mobile-alt"></i>
+      <h3>Design Responsivo</h3>
+    </div>
+    <div class="skill-item">
+      <i class="fab fa-js-square"></i>
+      <h3>JavaScript Interativo</h3>
+    </div>
+    <div class="skill-item">
+      <i class="fas fa-universal-access"></i>
+      <h3>Acessibilidade (A11y)</h3>
+    </div>
+  </div>
+</section>
+
+<section id="contato" class="fade-in">
+  <h2>Contato</h2>
+  <p>Quer conversar sobre um projeto ou parceria?</p>
+  <div class="contato-btns">
+    <a href="mailto:stephany84740963@gmail.com" class="btn">E-mail</a>
+    <a href="https://wa.me/5561993131550" class="btn"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+    <a href="https://www.linkedin.com/in/stephany-rodrigues-350a62207?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" class="btn" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+  </div>
+</section>
+
+</div>
+
+<footer>
+  <p>© 2025 Stephany Rodrigues | Portfólio de Social Media | Feito com carinho e código por mim 👋</p>
+</footer>
+
+<a href="https://wa.me/5561993131550" class="whatsapp-btn" target="_blank" aria-label="Abrir conversa no WhatsApp"><i class="fab fa-whatsapp"></i></a>
+
+<script>
+  
+  const sections = document.querySelectorAll('.fade-in');
+  const fadeInOnScroll = () => {
+    sections.forEach(section => {
+      const sectionTop = section.getBoundingClientRect().top;
+      const triggerPoint = window.innerHeight / 1.2;
+      if(sectionTop < triggerPoint){ 
+        section.classList.add('show'); 
+      }
+    });
+  };
+  window.addEventListener('scroll', fadeInOnScroll);
+  window.addEventListener('load', fadeInOnScroll);
+
+
+  
+  document.querySelectorAll('nav a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault(); 
+      const targetId = this.getAttribute('href');
+      document.querySelector(targetId).scrollIntoView({
+        behavior: 'smooth'
+      });
+    });
+  });
+
+
+  const themeToggle = document.getElementById('theme-toggle');
+  const icon = themeToggle.querySelector('i');
+  
+  
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-mode');
+    icon.classList.replace('fa-moon', 'fa-sun');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    
+    if (document.body.classList.contains('dark-mode')) {
+      icon.classList.replace('fa-moon', 'fa-sun');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      icon.classList.replace('fa-sun', 'fa-moon');
+      localStorage.setItem('theme', 'light');
+    }
+  });
+
+</script>
+
+</body>
+</html>
